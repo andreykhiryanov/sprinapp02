@@ -8,23 +8,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
-
     <context:component-scan base-package="org.generation.brainless"/>
-
-    <bean id="musicPlayer"
-          class="org.generation.brainless.MusicPlayer"
-          init-method="initialization"
-          destroy-method="destruction"
-          scope="prototype">
-        <property name="musicList">
-            <list>
-                <ref bean="classicalMusic"/>
-                <ref bean="rockMusic"/>
-                <ref bean="popMusic"/>
-            </list>
-        </property>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="value" value="${musicPlayer.value}"/>
-    </bean>
 
 </beans>

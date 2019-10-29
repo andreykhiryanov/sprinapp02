@@ -1,49 +1,39 @@
 package org.generation.brainless;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
+@Configuration
+@PropertySource("classpath:musicPlayer.properties")
+
+@Component
 public class MusicPlayer {
 
-    private List<Music> musicList;
+    private Music song1;
+    private Music song2;
+    private Music song3;
 
+    @Value("${musicPlayer.name}")
     private String name;
+
+    @Value("${musicPlayer.value}")
     private int value;
 
-    public MusicPlayer() {
-    }
-
-    public MusicPlayer(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    public List<Music> getMusicList() {
-        return musicList;
-    }
-
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
+    @Autowired
+    public MusicPlayer(@Qualifier("classicalMusic") Music song1, @Qualifier("popMusic") Music song2, @Qualifier("rockMusic") Music song3) {
+        this.song1 = song1;
+        this.song2 = song2;
+        this.song3 = song3;
     }
 
     public void playMusic() {
-        for (Music song : musicList) {
-            System.out.println("Playing: " + song.getSong() + ".");
-        }
+        System.out.println("Name: " + name + ".");
+        System.out.println("Value: " + value + ".");
+        System.out.println("Playing: " + song1.getSong() + ", " + song2.getSong() + ", " + song3.getSong() + "!");
     }
 
     private void initialization() {
