@@ -1,6 +1,5 @@
 package org.generation.brainless;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MusicPlayer {
@@ -42,17 +41,17 @@ public class MusicPlayer {
     }
 
     public void playMusic() {
-        for (Music music : musicList) {
-            System.out.println("Playing: " + music.getSong());
+        for (Music song : musicList) {
+            System.out.println("Playing: " + song.getSong() + ".");
         }
     }
 
     private void initialization() {
-        System.out.println("Initialization!");
+        System.out.println("Bean initialization! You'll see this message once, if scope of musicPlayer bean will be singleton (by default)!");
     }
 
     private void destruction() {
-        System.out.println("Destruction!");
+        System.out.println("Bean destruction! You'll not see this, if scope of musicPlayer bean will be prototype!");
     }
 
 }

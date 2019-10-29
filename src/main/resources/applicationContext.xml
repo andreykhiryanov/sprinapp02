@@ -9,6 +9,8 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
+
+
     <bean id="musicBean1"
           class="org.generation.brainless.ClassicalMusic"
           factory-method="getClassicalMusic">
@@ -32,6 +34,8 @@
                 <ref bean="musicBean3"/>
             </list>
         </property>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="value" value="${musicPlayer.value}"/>
     </bean>
 
 </beans>
